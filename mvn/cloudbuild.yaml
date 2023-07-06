@@ -70,7 +70,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--build-arg=PROJECT_ID=${PROJECT_ID}'
+  - '--build-arg=PROJECT_ID=${_PROJECT_ID}'
   - '--build-arg=MAVEN_VERSION=3.9.1'
   - '-f'
   - 'Dockerfile.appengine'

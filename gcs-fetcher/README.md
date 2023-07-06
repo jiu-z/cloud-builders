@@ -64,7 +64,7 @@ steps:
 - name: 'gcr.io/cloud-builders/gcs-fetcher'
   args:
   - '--type=Manifest'
-  - '--location=gs://${PROJECT_ID}_cloudbuild/manifest-foo.json'
+  - '--location=gs://${_PROJECT_ID}_cloudbuild/manifest-foo.json'
 ```
 
 
@@ -74,7 +74,7 @@ source, which you can do with `gcr.io/cloud-builders/gcs-uploader`:
 ```yaml
 steps:
 - name: 'gcr.io/cloud-builders/gcs-uploader'
-  args: ['--location=${PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json']
+  args: ['--location=${_PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json']
 ```
 
 This will upload the contents of the workspace directory, ignoring objects that
@@ -99,7 +99,7 @@ steps:
 - name: 'gcr.io/cloud-builders/gcs-fetcher'
   args:
   - '--type=Manifest'
-  - '--location=gs://${PROJECT_ID}_cloudbuild_cache/manifest-foo.json'
+  - '--location=gs://${_PROJECT_ID}_cloudbuild_cache/manifest-foo.json'
 
 # Generate new files, ignoring those that already exist.
 # - name: 'generate-new-files'
@@ -108,7 +108,7 @@ steps:
 # Upload all files; only new and changed files will be uploaded to
 # Cloud Storage.
 - name: 'gcr.io/cloud-builders/gcs-uploader'
-  - '--bucket=${PROJECT_ID}_cloudbuild_cache'
+  - '--bucket=${_PROJECT_ID}_cloudbuild_cache'
   - '--manifest_file=manifest-foo.json'
 ```
 

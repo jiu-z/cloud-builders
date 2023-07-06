@@ -35,15 +35,15 @@ steps:
 # Test the manifest uploader with a defined manifest location.
 - name: 'gcr.io/$PROJECT_ID/gcs-uploader'
   args:
-  - '--location=gs://${PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json'
+  - '--location=gs://${_PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json'
 # Print the manifest.
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cat', 'gs://${PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json']
+  args: ['cat', 'gs://${_PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json']
 # Fetch the manifest.
 - name: 'gcr.io/$PROJECT_ID/gcs-fetcher'
   args:
   - '--type=Manifest'
-  - '--location=gs://${PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json'
+  - '--location=gs://${_PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json'
   - '--dest_dir=fetched'
 # Check that files were downloaded.
 - name: 'ubuntu'
@@ -56,11 +56,11 @@ steps:
   - -c
   - |
     tar czvf /tmp/out.tar.gz .
-    gsutil cp /tmp/out.tar.gz gs://${PROJECT_ID}_cloudbuild/
+    gsutil cp /tmp/out.tar.gz gs://${_PROJECT_ID}_cloudbuild/
 - name: gcr.io/$PROJECT_ID/gcs-fetcher
   args:
   - --type=TarGzArchive
-  - --location=gs://${PROJECT_ID}_cloudbuild/out.tar.gz
+  - --location=gs://${_PROJECT_ID}_cloudbuild/out.tar.gz
   - --dest_dir=targz
 - name: ubuntu
   args:
@@ -75,11 +75,11 @@ steps:
   - |
     apt-get install -y zip
     zip -r /tmp/out.zip .
-    gsutil cp /tmp/out.zip gs://${PROJECT_ID}_cloudbuild/
+    gsutil cp /tmp/out.zip gs://${_PROJECT_ID}_cloudbuild/
 - name: gcr.io/$PROJECT_ID/gcs-fetcher
   args:
   - --type=ZipArchive
-  - --location=gs://${PROJECT_ID}_cloudbuild/out.zip
+  - --location=gs://${_PROJECT_ID}_cloudbuild/out.zip
   - --dest_dir=zip
 - name: ubuntu
   args:
