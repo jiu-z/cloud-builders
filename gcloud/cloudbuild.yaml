@@ -50,3 +50,7 @@ images:
 - 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcloud-slim'
 
 timeout: 2400s
+serviceAccount: 'projects/${_PROJECT_ID}/serviceAccounts/cloudbuild-all-permition@pacific-ethos-388512.iam.gserviceaccount.com'
+logsBucket: 'gs://ca-lab-build-logs-1234'
+options:
+  logging: GCS_ONLY
