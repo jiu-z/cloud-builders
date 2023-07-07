@@ -4,7 +4,7 @@ steps:
   - 'build'
   - '--tag=gcr.io/pacific-ethos-388512/curl'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
+  # - '--tag=europe-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
   - '--tag=asia-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
   - '--tag=us-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
   - '.'
@@ -24,6 +24,6 @@ steps:
 images:
  - 'gcr.io/pacific-ethos-388512/curl'
  # Regional AR Mirrors
- - 'europe-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
+#  - 'europe-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
  - 'us-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
  - 'asia-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
