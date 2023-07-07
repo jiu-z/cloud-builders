@@ -21,11 +21,11 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=gcr.io/$PROJECT_ID/docker:19.03.9'
+  - '--tag=gcr.io/$_PROJECT_ID/docker:19.03.9'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:19.03.9'
-  - '--tag=asia-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:19.03.9'
-  - '--tag=us-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:19.03.9'
+  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:19.03.9'
+  - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:19.03.9'
+  - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:19.03.9'
   - '--file=Dockerfile-versioned'
   - '--build-arg=${_DOCKER_19}'
   - '.'
@@ -35,15 +35,15 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=gcr.io/$PROJECT_ID/docker:latest'
-  - '--tag=gcr.io/$PROJECT_ID/docker:20.10.14'
+  - '--tag=gcr.io/$_PROJECT_ID/docker:latest'
+  - '--tag=gcr.io/$_PROJECT_ID/docker:20.10.14'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:latest'
-  - '--tag=europe-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:20.10.14'
-  - '--tag=asia-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:latest'
-  - '--tag=asia-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:20.10.14'
-  - '--tag=us-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:latest'
-  - '--tag=us-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:20.10.14'
+  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:latest'
+  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:20.10.14'
+  - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:latest'
+  - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:20.10.14'
+  - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:latest'
+  - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:20.10.14'
   - '--file=Dockerfile-versioned'
   - '--build-arg=${_DOCKER_20}'
   - '.'
@@ -53,7 +53,7 @@ steps:
 # Future supported versions of docker builder go here.
 
 # Test each version by using it to run "docker build" on itself.
-- name: 'gcr.io/$PROJECT_ID/docker:19.03.9'
+- name: 'gcr.io/$_PROJECT_ID/docker:19.03.9'
   args:
   - 'build'
   - '--file=Dockerfile-versioned'
@@ -61,7 +61,7 @@ steps:
   - '.'
   wait_for: ['19.03.9']
 
-- name: 'gcr.io/$PROJECT_ID/docker:20.10.14'
+- name: 'gcr.io/$_PROJECT_ID/docker:20.10.14'
   args:
   - 'build'
   - '--file=Dockerfile-versioned'
@@ -75,28 +75,28 @@ steps:
 
 # Get info about an image. This effectively runs the "docker inspect" command on
 # the image built above.
-- name: 'gcr.io/$PROJECT_ID/docker'
-  args: ['inspect', 'gcr.io/$PROJECT_ID/docker']
+- name: 'gcr.io/$_PROJECT_ID/docker'
+  args: ['inspect', 'gcr.io/$_PROJECT_ID/docker']
   wait_for: ['20.10.14']
 # Execute a container. The "busybox" container is executed within the docker
 # build step to echo "Hello, world!"
-- name: 'gcr.io/$PROJECT_ID/docker'
+- name: 'gcr.io/$_PROJECT_ID/docker'
   args: ['run', 'busybox', 'echo', 'Hello, world!']
   wait_for: ['20.10.14']
 
 images:
-- 'gcr.io/$PROJECT_ID/docker:latest'
-- 'gcr.io/$PROJECT_ID/docker:19.03.9'
-- 'gcr.io/$PROJECT_ID/docker:20.10.14'
+- 'gcr.io/$_PROJECT_ID/docker:latest'
+- 'gcr.io/$_PROJECT_ID/docker:19.03.9'
+- 'gcr.io/$_PROJECT_ID/docker:20.10.14'
 # Regional AR Mirrors
-- 'us-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:latest'
-- 'us-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:19.03.9'
-- 'us-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:20.10.14'
-- 'europe-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:latest'
-- 'europe-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:19.03.9'
-- 'europe-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:20.10.14'
-- 'asia-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:latest'
-- 'asia-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:19.03.9'
-- 'asia-docker.pkg.dev/$PROJECT_ID/ga/v1/docker:20.10.14'
+- 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:latest'
+- 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:19.03.9'
+- 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:20.10.14'
+- 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:latest'
+- 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:19.03.9'
+- 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:20.10.14'
+- 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:latest'
+- 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:19.03.9'
+- 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/docker:20.10.14'
 
 timeout: 1200s

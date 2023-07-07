@@ -44,8 +44,8 @@ image.
 ```
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/myimage', '.']
-images: ['gcr.io/$PROJECT_ID/myimage']
+  args: ['build', '-t', 'gcr.io/$_PROJECT_ID/myimage', '.']
+images: ['gcr.io/$_PROJECT_ID/myimage']
 ```
 
 ### Retag an image and push the new tag
@@ -57,9 +57,9 @@ This `cloudbuild.yaml` adds a new tag (`:newtag`) to an existing image
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['tag',
-    'gcr.io/$PROJECT_ID/myimage:oldtag',
-    'gcr.io/$PROJECT_ID/myimage:newtag']
-images: ['gcr.io/$PROJECT_ID/myimage:newtag']
+    'gcr.io/$_PROJECT_ID/myimage:oldtag',
+    'gcr.io/$_PROJECT_ID/myimage:newtag']
+images: ['gcr.io/$_PROJECT_ID/myimage:newtag']
 ```
 
 ### Run a Docker image
@@ -70,5 +70,5 @@ container exits. If the image runs too long, the build may time out.
 ```
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['run', 'gcr.io/$PROJECT_ID/myimage']
+  args: ['run', 'gcr.io/$_PROJECT_ID/myimage']
 ```

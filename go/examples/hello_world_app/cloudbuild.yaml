@@ -6,5 +6,5 @@ steps:
   args: ['test', 'hello']
   env: ['PROJECT_ROOT=hello']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/hello-app', '.']
-images: ['gcr.io/$PROJECT_ID/hello-app']
+  args: ['build', '--tag=gcr.io/$_PROJECT_ID/hello-app', '.']
+images: ['gcr.io/$_PROJECT_ID/hello-app']

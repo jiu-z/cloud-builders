@@ -82,7 +82,7 @@ steps:
   args: ['run', '//path/to/some:docker_target']
 # Re-tag the image to something in your project's gcr.io repository.
 - name: gcr.io/cloud-builders/docker
-  args: ['tag', 'bazel/path/to/some:docker_target', 'gcr.io/$PROJECT_ID/server']
+  args: ['tag', 'bazel/path/to/some:docker_target', 'gcr.io/$_PROJECT_ID/server']
 # Push the image.
-images: ['gcr.io/$PROJECT_ID/server']
+images: ['gcr.io/$_PROJECT_ID/server']
 ```

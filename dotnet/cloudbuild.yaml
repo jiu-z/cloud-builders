@@ -4,25 +4,25 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'build'
-  - '--tag=gcr.io/$PROJECT_ID/dotnet'
+  - '--tag=gcr.io/$_PROJECT_ID/dotnet'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/$PROJECT_ID/ga/v1/dotnet'
-  - '--tag=asia-docker.pkg.dev/$PROJECT_ID/ga/v1/dotnet'
-  - '--tag=us-docker.pkg.dev/$PROJECT_ID/ga/v1/dotnet'
+  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/dotnet'
+  - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/dotnet'
+  - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/dotnet'
   - '.'
 
 # Build the test projects
-- name: 'gcr.io/$PROJECT_ID/dotnet'
+- name: 'gcr.io/$_PROJECT_ID/dotnet'
   args: ['build']
   dir: 'examples/TestApp-2.0'
 
-- name: 'gcr.io/$PROJECT_ID/dotnet'
+- name: 'gcr.io/$_PROJECT_ID/dotnet'
   args: ['build']
   dir: 'examples/TestApp-2.1'
 
 images:
-- 'gcr.io/$PROJECT_ID/dotnet'
+- 'gcr.io/$_PROJECT_ID/dotnet'
 # Regional AR Mirrors
-- 'europe-docker.pkg.dev/$PROJECT_ID/ga/v1/dotnet'
-- 'asia-docker.pkg.dev/$PROJECT_ID/ga/v1/dotnet'
-- 'us-docker.pkg.dev/$PROJECT_ID/ga/v1/dotnet'
+- 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/dotnet'
+- 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/dotnet'
+- 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/dotnet'

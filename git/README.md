@@ -60,7 +60,7 @@ steps:
 # Repository.
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
   entrypoint: 'git'
-  args: ['clone', 'https://source.developers.google.com/p/$PROJECT_ID/r/$REPO']
+  args: ['clone', 'https://source.developers.google.com/p/$_PROJECT_ID/r/$REPO']
 # This step is functionally equivalent to the prior step, but invokes `gcloud`
 # instead of using `git` directly.
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -77,8 +77,8 @@ Credentials.
 ```
 steps:
 - name: 'gcr.io/cloud-builders/git'
-  args: ['push', 'https://source.developers.google.com/p/$PROJECT_ID/r/$REPO', 'master']
+  args: ['push', 'https://source.developers.google.com/p/$_PROJECT_ID/r/$REPO', 'master']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:alpine'
   entrypoint: 'git'
-  args: ['push', 'https://source.developers.google.com/p/$PROJECT_ID/r/$REPO', 'master']
+  args: ['push', 'https://source.developers.google.com/p/$_PROJECT_ID/r/$REPO', 'master']
 ```

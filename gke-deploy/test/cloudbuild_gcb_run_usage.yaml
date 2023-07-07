@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/$PROJECT_ID/gke-deploy'
+- name: 'gcr.io/$_PROJECT_ID/gke-deploy'
   args:
   - 'run'
   - '--help'

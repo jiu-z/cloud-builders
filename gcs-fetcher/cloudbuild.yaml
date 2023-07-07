@@ -9,13 +9,13 @@ steps:
   args:
   - 'build'
   - '--build-arg=cmd=./cmd/gcs-fetcher/'
-  - '--tag=gcr.io/$PROJECT_ID/gcs-fetcher'
+  - '--tag=gcr.io/$_PROJECT_ID/gcs-fetcher'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-fetcher'
-  - '--tag=asia-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-fetcher'
-  - '--tag=us-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-fetcher'
+  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-fetcher'
+  - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-fetcher'
+  - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-fetcher'
   - '.'
-- name: 'gcr.io/$PROJECT_ID/gcs-fetcher'
+- name: 'gcr.io/$_PROJECT_ID/gcs-fetcher'
   args: ['--help']
 
 # Build the gcs-uploader binary and put it into the builder image.
@@ -23,24 +23,24 @@ steps:
   args:
   - 'build'
   - '--build-arg=cmd=./cmd/gcs-uploader/'
-  - '--tag=gcr.io/$PROJECT_ID/gcs-uploader'
+  - '--tag=gcr.io/$_PROJECT_ID/gcs-uploader'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-uploader'
-  - '--tag=asia-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-uploader'
-  - '--tag=us-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-uploader'
+  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-uploader'
+  - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-uploader'
+  - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-uploader'
   - '.'
-- name: 'gcr.io/$PROJECT_ID/gcs-uploader'
+- name: 'gcr.io/$_PROJECT_ID/gcs-uploader'
   args: ['--help']
 
 # Test the manifest uploader with a defined manifest location.
-- name: 'gcr.io/$PROJECT_ID/gcs-uploader'
+- name: 'gcr.io/$_PROJECT_ID/gcs-uploader'
   args:
   - '--location=gs://${_PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json'
 # Print the manifest.
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cat', 'gs://${_PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json']
 # Fetch the manifest.
-- name: 'gcr.io/$PROJECT_ID/gcs-fetcher'
+- name: 'gcr.io/$_PROJECT_ID/gcs-fetcher'
   args:
   - '--type=Manifest'
   - '--location=gs://${_PROJECT_ID}_cloudbuild/manifest-${BUILD_ID}.json'
@@ -57,7 +57,7 @@ steps:
   - |
     tar czvf /tmp/out.tar.gz .
     gsutil cp /tmp/out.tar.gz gs://${_PROJECT_ID}_cloudbuild/
-- name: gcr.io/$PROJECT_ID/gcs-fetcher
+- name: gcr.io/$_PROJECT_ID/gcs-fetcher
   args:
   - --type=TarGzArchive
   - --location=gs://${_PROJECT_ID}_cloudbuild/out.tar.gz
@@ -76,7 +76,7 @@ steps:
     apt-get install -y zip
     zip -r /tmp/out.zip .
     gsutil cp /tmp/out.zip gs://${_PROJECT_ID}_cloudbuild/
-- name: gcr.io/$PROJECT_ID/gcs-fetcher
+- name: gcr.io/$_PROJECT_ID/gcs-fetcher
   args:
   - --type=ZipArchive
   - --location=gs://${_PROJECT_ID}_cloudbuild/out.zip
@@ -88,14 +88,14 @@ steps:
 
 # Push the images.
 images:
-- 'gcr.io/$PROJECT_ID/gcs-fetcher'
-- 'gcr.io/$PROJECT_ID/gcs-uploader'
+- 'gcr.io/$_PROJECT_ID/gcs-fetcher'
+- 'gcr.io/$_PROJECT_ID/gcs-uploader'
 # Regional AR Mirrors
-- 'europe-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-uploader'
-- 'asia-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-uploader'
-- 'us-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-uploader'
-- 'europe-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-fetcher'
-- 'asia-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-fetcher'
-- 'us-docker.pkg.dev/$PROJECT_ID/ga/v1/gcs-fetcher'
+- 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-uploader'
+- 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-uploader'
+- 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-uploader'
+- 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-fetcher'
+- 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-fetcher'
+- 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcs-fetcher'
 
 timeout: '2100s'

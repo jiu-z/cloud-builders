@@ -1,10 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--tag=gcr.io/$PROJECT_ID/twine', '.']
+  args: ['build', '--tag=gcr.io/$_PROJECT_ID/twine', '.']
 
 # Print version information.
-- name: 'gcr.io/$PROJECT_ID/twine'
+- name: 'gcr.io/$_PROJECT_ID/twine'
   args: ['--version']
 
 images:
-  - 'gcr.io/$PROJECT_ID/twine'
+  - 'gcr.io/$_PROJECT_ID/twine'

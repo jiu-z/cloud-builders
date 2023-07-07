@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/$PROJECT_ID/gke-deploy'
+- name: 'gcr.io/$_PROJECT_ID/gke-deploy'
   args:
   - 'prepare'
   - '--image=gcr.io/google-containers/nginx:latest'
@@ -19,14 +19,14 @@ steps:
     set -e  # Fail if any command below fails
     gsutil -q stat $_OUTPUT/expanded/expanded-resources.yaml
     gsutil -q stat $_OUTPUT/suggested/suggested-resources.yaml
-- name: 'gcr.io/$PROJECT_ID/gke-deploy'
+- name: 'gcr.io/$_PROJECT_ID/gke-deploy'
   args:
   - 'apply'
   - '--filename=$_OUTPUT/expanded/*'
   - '--namespace=$_NAMESPACE'
   - '--cluster=$_CLUSTER'
   - '--location=$_LOCATION'
-  - '--project=$PROJECT_ID'
+  - '--project=$_PROJECT_ID'
 - name: 'gcr.io/cloud-builders/kubectl'
   entrypoint: 'sh'
   args:
@@ -35,7 +35,7 @@ steps:
     set -x  # Print commands
     set -e  # Fail if any command below fails
     mkdir check && cd check
-    gcloud container clusters get-credentials $_CLUSTER --zone $_LOCATION --project $PROJECT_ID
+    gcloud container clusters get-credentials $_CLUSTER --zone $_LOCATION --project $_PROJECT_ID
     kubectl get deployment nginx -n $_NAMESPACE -o yaml > deployment.yaml
     grep -Fq "app.kubernetes.io/managed-by: gcp-cloud-build-deploy" deployment.yaml
     grep -Fq "app.kubernetes.io/name: test-name" deployment.yaml
