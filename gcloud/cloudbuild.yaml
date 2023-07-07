@@ -48,5 +48,5 @@ images:
 - 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcloud-slim'
 - 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcloud'
 - 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/gcloud-slim'
-dir: 'gcloud'
+
 timeout: 2400s
