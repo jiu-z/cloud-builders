@@ -4,11 +4,11 @@ steps:
   - 'build'
   - '--tag=gcr.io/$_PROJECT_ID/curl'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
+  # - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
   - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
   - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
   - '.'
-
+  dir: 'curl'
 # Print version information.
 - name: gcr.io/$_PROJECT_ID/curl
   args: ['-V']
@@ -24,6 +24,6 @@ steps:
 images:
  - 'gcr.io/$_PROJECT_ID/curl'
  # Regional AR Mirrors
- - 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
+ # - 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
  - 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
  - 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
