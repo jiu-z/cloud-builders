@@ -4,7 +4,7 @@ steps:
   - 'build'
   - '--tag=gcr.io/$_PROJECT_ID/curl'
   # Regional AR Mirrors
-  # - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
+  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
   - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
   - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
   - '.'
