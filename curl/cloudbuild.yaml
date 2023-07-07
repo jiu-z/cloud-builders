@@ -2,28 +2,28 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args:
   - 'build'
-  - '--tag=gcr.io/$_PROJECT_ID/curl'
+  - '--tag=gcr.io/$PROJECT_ID/curl'
   # Regional AR Mirrors
-  - '--tag=europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
-  - '--tag=asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
-  - '--tag=us-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
+  - '--tag=europe-docker.pkg.dev/$PROJECT_ID/ga/v1/curl'
+  - '--tag=asia-docker.pkg.dev/$PROJECT_ID/ga/v1/curl'
+  - '--tag=us-docker.pkg.dev/$PROJECT_ID/ga/v1/curl'
   - '.'
-  dir: 'curl'
+  dir: 'gcloud'
 # Print version information.
-- name: gcr.io/$_PROJECT_ID/curl
+- name: gcr.io/$PROJECT_ID/curl
   args: ['-V']
 
 # GET data from a server, specifying an Authorization header.
-- name: gcr.io/$_PROJECT_ID/curl
+- name: gcr.io/$PROJECT_ID/curl
   args: ['-o', 'file.out', "--header", "Authorization: Bearer foobar'", 'https://www.example.com']
 
 # POST information to a server, specifying a Content-type header.
-- name: gcr.io/$_PROJECT_ID/curl
+- name: gcr.io/$PROJECT_ID/curl
   args: ['--header', 'Content-type: application/json"', '--data', '"{\"buildID\": \"$BUILD_ID\"}"', 'https://www.example.com']
 
 images:
- - 'gcr.io/$_PROJECT_ID/curl'
+ - 'gcr.io/$PROJECT_ID/curl'
  # Regional AR Mirrors
- - 'europe-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
- - 'us-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
- - 'asia-docker.pkg.dev/$_PROJECT_ID/ga/v1/curl'
+ - 'europe-docker.pkg.dev/$PROJECT_ID/ga/v1/curl'
+ - 'us-docker.pkg.dev/$PROJECT_ID/ga/v1/curl'
+ - 'asia-docker.pkg.dev/$PROJECT_ID/ga/v1/curl'
