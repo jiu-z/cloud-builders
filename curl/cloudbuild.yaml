@@ -8,7 +8,7 @@ steps:
   - '--tag=asia-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
   - '--tag=us-docker.pkg.dev/pacific-ethos-388512/ga/v1/curl'
   - '.'
-  dir: 'gcloud'
+  dir: 'curl'
 # Print version information.
 - name: gcr.io/pacific-ethos-388512/curl
   args: ['-V']
